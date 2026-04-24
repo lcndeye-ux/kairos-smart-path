@@ -17,4 +17,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+use App\Http\Controllers\GradeController;
+
+Route::middleware('auth')->group(function () {
+    Route::get('/grades', [GradeController::class, 'index'])->name('grades.index');
+    Route::post('/grades', [GradeController::class, 'store'])->name('grades.store');
+});
+
 require __DIR__.'/auth.php';
+
+use App\Http\Controllers\StudyGroupController;
+Route::middleware('auth')->group(function () {
+    Route::get('/groups', [StudyGroupController::class, 'index'])->name('groups.index');
+    Route::post('/groups', [StudyGroupController::class, 'store'])->name('groups.store');
+});
